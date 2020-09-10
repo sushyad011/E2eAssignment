@@ -9,6 +9,7 @@ from .models import Bed, Patient
 class NewPatient(APIView):
     """
     New Patient get admitted if the requested bed is available.
+    params: name, requested bed type
     """
 
     def post(self,request):
@@ -46,6 +47,10 @@ class NewPatient(APIView):
 
 
 class BedStatusBasedOnId(APIView):
+    """
+    Return Bed status with patient name if occupied
+    params: bed id
+    """
 
     def get(self,request,pk):
 
@@ -76,6 +81,10 @@ class BedStatusBasedOnId(APIView):
             )
 
 class PatientCheckout(APIView):
+    """
+    Patient checkout
+    params: patient id
+    """
 
     def post(self,request,pk):
 
@@ -120,6 +129,9 @@ class PatientCheckout(APIView):
 
 
 class GetPatientsListBasedOnBedType(APIView):
+    """
+    Return patient list based on bed type specified in the query params.
+    """
 
     def get(self,request):
         bed_type = request.GET.get('bed_type')
@@ -135,6 +147,9 @@ class GetPatientsListBasedOnBedType(APIView):
         )
 
 class BedListBasedOnBedType(APIView):
+    """
+    Return bed list details based on bed type specified in the query params.
+    """
 
     def get(self,request):
         bed_type = request.GET.get('bed_type')
@@ -151,6 +166,9 @@ class BedListBasedOnBedType(APIView):
 
 
 class GetBedListBasedOnStatus(APIView):
+    """
+    Return bed list based on bed status specified in the query params
+    """
 
     def get(self,request):
         bed_status = request.GET.get('status')
